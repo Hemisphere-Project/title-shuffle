@@ -50,7 +50,7 @@ var TitleShuffle = {
 		}
 		
 		//console.log(mix);
-		document.getElementsByClassName("title")[0].innerHTML = mix.join("");
+		document.getElementsByClassName("mx-title")[0].innerHTML = mix.join("");
 	},
 	updateAB:function(screenpos){
 		//console.log(screenpos);
@@ -76,7 +76,7 @@ var TitleShuffle = {
 	},
 	onScroll:function(event){
 		//console.log("scroll baby"+event);
-		var content = document.getElementsByClassName("content")[0];
+		var content = document.getElementsByClassName("mx-content")[0];
 		var screenPosition = content.getBoundingClientRect();
 		
 		//var progress = -screenPosition.top%1000 / 100;
@@ -94,7 +94,7 @@ var TitleShuffle = {
 			TitleShuffle.lastProgress = progress;
 		
 		}else
-			document.getElementsByClassName("title")[0].innerHTML = TitleShuffle.tA.title;
+			document.getElementsByClassName("mx-title")[0].innerHTML = TitleShuffle.tA.title;
 	}
 	
 	
