@@ -23,7 +23,7 @@ call the init function
 
 TitleShuffle identify your title div with "title" class
 
-	<div class="title">Salut</div>
+	<div class="mx-title">Salut</div>
 
 TitleShuffle identify each section with "mx-section" class and use the id as the title to be displayed
 
