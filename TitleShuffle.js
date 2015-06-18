@@ -1,5 +1,5 @@
 var TitleShuffle = {
-	transitionLength:500,
+	transitionLength:100,
 	lastProgress:0,
 	titleList:[],
 	tA:{},
@@ -12,12 +12,24 @@ var TitleShuffle = {
 			console.log(k+"  "+JSON.stringify(pos));
 		}
 		
+		this.sortTitleList()
+		console.log(this.titleList);
 		//this.tA = this.titleList[0];
 		//this.tB = this.titleList[1];
 		this.onScroll();
 		
 		
 		window.addEventListener("optimizedScroll", this.onScroll);
+	},
+	sortTitleList:function(){
+		this.titleList.sort(function(a,b){
+			if (a.position.y > b.position.y)
+				return 1;
+			if (a.position.y < b.position.y)
+				return -1;
+			// a doit être égale à b
+				return 0;	
+		});
 	},
 	mixTitles:function(progress){
 		var tAChars = this.tA.title.split("");
@@ -26,15 +38,16 @@ var TitleShuffle = {
 		var tATargetLength = Math.floor((1-progress)*tAChars.length);
 		var tBTargetLength = Math.floor(progress*tBChars.length);
 		
+		var randIndex;
 		// splice some character in the A string array
 		while(tAChars.length > tATargetLength){
-			var randIndex = Math.floor(Math.random()*tAChars.length);
+			randIndex = Math.floor(Math.random()*tAChars.length);
 			tAChars.splice(randIndex,1);
 		}
 		
 		// splice some character in the B string array
 		while(tBChars.length > tBTargetLength){
-			var randIndex = Math.floor(Math.random()*tBChars.length);
+			randIndex = Math.floor(Math.random()*tBChars.length);
 			tBChars.splice(randIndex,1);
 		}
 		
@@ -89,7 +102,7 @@ var TitleShuffle = {
 			var progress = ( screenpos - TitleShuffle.tB.position.y + TitleShuffle.transitionLength) / TitleShuffle.transitionLength;
 			progress = Math.round(progress*100)/100;
 			console.log(progress);
-			if(progress != TitleShuffle.lastProgress)
+			if(progress !== TitleShuffle.lastProgress)
 				TitleShuffle.mixTitles(progress);
 			TitleShuffle.lastProgress = progress;
 		
